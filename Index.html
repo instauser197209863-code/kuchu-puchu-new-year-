@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Kuchu Puchu 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Comic Sans MS',cursive;
+  background:linear-gradient(135deg,#ffe6f0,#fff);
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+}
+.page{display:none;}
+.active{display:block;animation:fadeIn 1s;}
+button{
+  padding:14px 24px;
+  font-size:20px;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  margin:10px;
+}
+button:hover{transform:scale(1.1);}
+.yes{background:#ffb6c1;}
+.no{background:#d3d3d3;}
+.cats{font-size:40px;}
+.angry{background:#222;color:#fff;padding:30px;border-radius:20px;}
+
+.heart{
+  position:fixed;
+  bottom:-10px;
+  font-size:24px;
+  animation:floatUp 5s linear infinite;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-110vh);opacity:0;}
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:scale(.95);}
+  to{opacity:1;transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <div class="cats">🐱💖🐱</div>
+  <h1>Hey cutie 😽</h1>
+  <p>I have a surprise for you 🎁</p>
+  <button class="yes" onclick="goYes()">Show meee 😍</button>
+  <button class="no" onclick="goNo()">I'm scared 🙄</button>
+</div>
+
+<!-- NO PAGE -->
+<div class="page angry" id="pageNo">
+  <div class="cats">😾😾😾</div>
+  <h1>HOW DARE YOU 😤</h1>
+  <p>Angry cats are judging you</p>
+  <button onclick="backHome()">Go back 😿</button>
+</div>
+
+<!-- LOADING PAGE -->
+<div class="page" id="pageYes">
+  <h1>Loading love for you 😻</h1>
+  <h2 id="timer">10</h2>
+  <div id="loadingCats" class="cats"></div>
+</div>
+
+<!-- FINAL PAGE -->
+<div class="page" id="pageFinal">
+  <h1>For You, Kuchu Puchu 💖</h1>
+  <p>
+    You are my safe place, my happiness, my forever 😽<br>
+    Every hug feels like home, every kiss feels like magic ✨<br>
+    You were never second best… you are always MY best 💕
+  </p>
+
+  <div style="max-width:300px;margin:auto;">
+    <img id="slideshow" src="image1.jpg"
+     style="width:100%;border-radius:20px;
+     box-shadow:0 10px 25px rgba(0,0,0,.2);">
+  </div>
+
+  <div>
+    <button class="yes" onclick="sendKiss()">💋 Kiss</button>
+    <button class="yes" onclick="sendHug()">🤗 Hug</button>
+  </div>
+
+  <p id="loveAction" style="font-size:20px;"></p>
+
+  <h2 style="color:#ff69b4;">
+    Will you stay with me forever? 🥺💍💖
+  </h2>
+</div>
+
+<audio id="bgMusic" src="bargad.mp3" loop></audio>
+
+<script>
+// floating hearts
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="💖";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},500);
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goNo(){showPage('pageNo');}
+function backHome(){showPage('page1');}
+function goYes(){
+  showPage('pageYes');
+  document.getElementById("bgMusic").play();
+  startTimer();
+}
+function startTimer(){
+  let t=10;
+  const timer=document.getElementById("timer");
+  const cats=document.getElementById("loadingCats");
+  cats.innerHTML="";
+  const i=setInterval(()=>{
+    t--; timer.innerText=t;
+    cats.innerHTML+="🐱 ";
+    if(t<=0){clearInterval(i);showPage('pageFinal');}
+  },1000);
+}
+function sendKiss(){
+  document.getElementById("loveAction").innerText=
+  "Muaaah 💋💖 Kuchu Puchu, this kiss is only yours!";
+}
+function sendHug(){
+  document.getElementById("loveAction").innerText=
+  "Big warm hug 🤗💞 I'm holding you tight, Kuchu Puchu!";
+}
+
+// slideshow
+const images=[
+'image1.jpg','image2.jpg','image3.jpg','image4.jpg',
+'image5.jpg','image6.jpg','image7.jpg','image8.jpg'
+];
+let idx=0;
+setInterval(()=>{
+  const img=document.getElementById("slideshow");
+  if(!img)return;
+  idx=(idx+1)%images.length;
+  img.src=images[idx];
+},2000);
+</script>
+
+</body>
+  </html>
