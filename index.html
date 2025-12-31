@@ -103,29 +103,38 @@ button:hover{transform:scale(1.1);}
   </h2>
 </div>
 
-<audio id="bgMusic" src="bargad.mp3" loop></audio>
+<audio id="bgMusic" src="song.mp3" loop></audio>
 
 <script>
-// floating hearts
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerText="💖";
-  h.style.left=Math.random()*100+"vw";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},500);
+// Floating hearts (unchanged)
+setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "💖";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 6000);
+}, 500);
 
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
 }
-function goNo(){showPage('pageNo');}
-function backHome(){showPage('page1');}
-function goYes(){
-  showPage('pageYes');
-  document.getElementById("bgMusic").play();
-  startTimer();
+
+// When 'Show meee' is clicked, this function now plays the correct file
+function goYes() {
+    showPage('pageYes');
+    const music = document.getElementById("bgMusic");
+    
+    // Modern browsers require a 'promise' check for audio
+    music.play().then(() => {
+        console.log("Music started!");
+    }).catch(error => {
+        console.log("Playback blocked or file not found:", error);
+    });
+    
+    startTimer();
+}
 }
 function startTimer(){
   let t=10;
