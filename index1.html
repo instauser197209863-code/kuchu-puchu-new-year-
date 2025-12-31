@@ -1,0 +1,165 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy New Year Bushra 🐱💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: radial-gradient(circle, #ffe6f0, #ffb3d9);
+      text-align: center;
+      overflow: hidden;
+    }
+    .page {
+      display: none;
+      padding: 60px 20px;
+    }
+    .active {
+      display: block;
+    }
+    h1 {
+      color: #ff1a75;
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 1.3rem;
+      color: #333;
+    }
+    button {
+      padding: 14px 30px;
+      margin: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #ff5fa2, #ff1a75);
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .emoji {
+      font-size: 70px;
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    /* Hearts */
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: float 6s infinite;
+      opacity: 0.7;
+    }
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); opacity: 0; }
+    }
+    /* Fireworks */
+    .firework {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      box-shadow:
+        0 0 10px #ff1a75,
+        20px 0 #fff,
+        -20px 0 #ffd700,
+        0 20px #ff69b4,
+        0 -20px #00ffff;
+      animation: explode 1.2s infinite;
+    }
+    @keyframes explode {
+      from { transform: scale(0); opacity: 1; }
+      to { transform: scale(1.5); opacity: 0; }
+    }
+    .love {
+      font-size: 2.2rem;
+      color: #ff0066;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0e0b61fa32.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating Hearts -->
+  <div class="heart" style="left:10%">❤️</div>
+  <div class="heart" style="left:30%">💖</div>
+  <div class="heart" style="left:50%">💗</div>
+  <div class="heart" style="left:70%">❤️</div>
+  <div class="heart" style="left:90%">💞</div>
+
+  <!-- Fireworks -->
+  <div class="firework" style="top:20%; left:30%"></div>
+  <div class="firework" style="top:40%; left:70%"></div>
+  <div class="firework" style="top:70%; left:50%"></div>
+
+  <!-- PAGE 1 -->
+  <div id="page1" class="page active">
+    <div class="emoji">🐱💖🐱</div>
+    <h1>My Bushra 😺</h1>
+    <p>Will you celebrate New Year with me? 🎉✨</p>
+    <button onclick="showPage('page2')">Yes 😻</button>
+    <button onclick="showPage('page3')">No 🙀</button>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div id="page2" class="page">
+    <div class="emoji">😺🎆😺</div>
+    <h1>Happy New Year 2025 🎊</h1>
+    <p>
+      Happy New Year my <b>Bushra</b> 💕🐾<br><br>
+      You are the most beautiful blessing of my life 😽<br>
+      Every smile of yours makes my world brighter ✨<br><br>
+      This year, next year, and all the years after that —<br>
+      I just want <b>you & me together</b> 💖
+    </p>
+    <button onclick="showPage('page4')">One More Surprise 😻</button>
+  </div>
+
+  <!-- PAGE 4 -->
+  <div id="page4" class="page">
+    <div class="emoji">💍🐱💖</div>
+    <h1>Forever With You Bushra 💕</h1>
+    <div class="love">I Love You Bushra ❤️</div>
+    <p>
+      As long as I have <b>you</b>, my heart is full ❤️<br><br>
+      Stay with me, laugh with me,<br>
+      and let’s make every New Year special — together 💞
+    </p>
+    <button onclick="showPage('page1')">Start Again 😽</button>
+  </div>
+<!-- PAGE 3 -->
+  <div id="page3" class="page">
+    <div class="emoji">😾🐱</div>
+    <h1>How Dare You! 😼</h1>
+    <p>Cute angry cat is very upset 😤🐾<br>You must say YES 😿</p>
+    <button onclick="showPage('page1')">Go Back 😽</button>
+  </div>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
